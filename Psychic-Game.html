@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Events!</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+  </head>
+  <body>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="jumbotron">
+            <div id="play">
+            <h1> Psychic Game </h1>
+            <div id="L1">Guess what letter I'm Thinking</div>
+            <input type="input" id="L2">
+            <div id="L3"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- We have to put this at the end of our document to ensure the user-text
+         span exists when we try to access it. -->
+    <script type="text/javascript">
+      // Let's start by grabbing a reference to the <span> below.
+      var Wins = 0 
+      var Losses = 0 
+      var Guesses = 10 
+      var choices = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+      // Next, we give JavaScript a function to execute when onkeyup event fires.
+      // document.onkeyup = function(event) {
+      
+      var userGuess = document.getElementById("L2");
+      userGuess.addEventListener("input",run)
+
+
+
+      function run (){ 
+
+      if (choices.indexOf(userGuess.value) > -1){
+
+      var compGuess = choices[Math.floor(Math.random()*choices.length)];
+
+      if (userGuess === compGuess){
+        Wins++, Guesses--;
+      }
+      else if (userGuess !== compGuess){
+        Losses++, Guesses--;
+      }
+      if (Guesses === 0 )
+        alert("Game Over!")
+
+
+      console.log(Wins)
+      console.log(Losses)
+      console.log(Guesses)
+
+      var html =  "<p>wins: " + Wins + "</p>" +
+      "<p>losses: " + Losses + "</p>" +
+      "<p>ties: " + Guesses + "</p>";
+
+      document.getElementById("L3").innerHTML = html
+    }
+
+}
+       
+
+    </script>
+  </body>
+</html>
